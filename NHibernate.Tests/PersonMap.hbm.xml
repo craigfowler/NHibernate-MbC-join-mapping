@@ -1,0 +1,25 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="NHibernate.Tests"
+                   assembly="NHibernate.Tests">
+    
+    <!--
+        Note that the Mapping-by-Code mapping in the same directory as this is equivalent.
+        Only one of the two mappings should be used at a time.
+    -->
+    
+    <class name="Person" table="Person">
+        <id name="PersonId" />
+        <property name="Name" />
+
+        <join table="PayrollInfo">
+            <key column="PayrollInfoPersonId" />
+            <property name="PayrollNumber" />
+        </join>
+
+        <join table="Address">
+            <key column="AddressPersonId" />
+            <property name="City" />
+        </join>
+    </class>
+    
+</hibernate-mapping>
