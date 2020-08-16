@@ -33,9 +33,9 @@ from
     Person person0_
     inner join PayrollInfo person0_1_
         on person0_.PersonId=person0_1_.AddressPersonId
---                                      ^^^ This is the error, it is the wrong column name,
---                                          it should be PayrollInfoPersonId, despite it
---                                          correct in the mapping.
+--                                      ^^^ This is the error, it is the wrong column name.
+--                                          It should be PayrollInfoPersonId, despite it
+--                                          being correct in the mapping.
     inner join Address person0_2_
         on person0_.PersonId=person0_2_.AddressPersonId
 
