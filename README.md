@@ -1,5 +1,5 @@
 # Mapping-By-Code `Join` repro case
-This repository is a reproduction case for [a bug in NHibernate] whereby Mapping By Code (MbC) produces incorrect SQL if there is more than one `Join` in a single class mapping.  It would seem that parts of the join mapping from the first of the joins are accidentally overrwriting/overriding the same parts of the join mapping from subsequent joins in the same class mapping file.  More information may be found at the linked issue.
+This repository is a reproduction case for [a bug in NHibernate] whereby Mapping By Code (MbC) produces incorrect SQL if there is more than one `Join` in a single class mapping.  It would seem that parts of the join mapping from subsequent joins are accidentally overrwriting/overriding the same parts of the join mapping from previous joins in the same class mapping file.  In this repro case you can see the effect with *the key column name*.  More information may be found at the linked issue.
 
 The reproduction case framed as a pair of NUnit test cases, so to see the results just clone the repo and run **dotnet test**.
 
@@ -34,7 +34,8 @@ from
     inner join PayrollInfo person0_1_
         on person0_.PersonId=person0_1_.AddressPersonId
 --                                      ^^^ This is the error, it is the wrong column name,
---                                          it should be PayrollInfoPersonId
+--                                          it should be PayrollInfoPersonId, despite it
+--                                          correct in the mapping.
     inner join Address person0_2_
         on person0_.PersonId=person0_2_.AddressPersonId
 
